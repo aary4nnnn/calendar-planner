@@ -1,0 +1,27 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    padding: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+td, th {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+a {
+    text-decoration: none;
+}
+.event {
+    font-size: 0.9em;
+    margin-top: 4px;
+    display: block;
+}
+.work { color: blue; }
+.personal { color: green; }
+.birthday { color: orange; }
