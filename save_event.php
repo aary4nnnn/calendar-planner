@@ -15,4 +15,4 @@ if ($id) {
     $stmt = $pdo->prepare("INSERT INTO events (user_id, title, event_date, category) VALUES (?, ?, ?, ?)");
     $stmt->execute([$user_id, $title, $date, $category]);
 }
-header("Location: index.php");
+header("Location: login.php");

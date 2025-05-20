@@ -4,7 +4,7 @@ require 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
     $stmt->execute([$_POST['username'], $_POST['email'], $_POST['password']]);
-    header("Location: login.php");
+    header("Location: index.php");
 }
 ?>
 <form method="post">
