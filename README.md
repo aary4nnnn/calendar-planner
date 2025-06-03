@@ -15,6 +15,17 @@ Feel free to explore the live demo!
 - Add, edit, delete events
 - Color-coded event categories
 - Email reminders via scheduled cron job
+- Dynamic navigation and rendering of calendar days.
+
+## Functional Improvements 
+
+Efficient fetching of events/tasks from the DB per month.
+
+Clean use of category classes for events.
+
+Dark mode toggle with localStorage persistence.
+
+SVGs for better scalability and sharpness in icons.
 
 ## 🖼️ Screenshots
 
