@@ -47,8 +47,9 @@ SVGs for better scalability and sharpness in icons.
 
 
 ## 📁 Project Structure
-- `index.php`: Main calendar view.
-- `event_form.php`: Add or edit events.
+- `login.php`: Main calendar view.
+- `event_form.php`: Add or edit Events.
+- `task_form.php`: Add pr edit Tasks.
 - `send_reminders.php`: Script to send daily email reminders.
 
 
