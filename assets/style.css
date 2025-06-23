@@ -58,6 +58,7 @@ body {
     text-align: center;
     text-decoration: none;
     transition: background 0.3s ease;
+    margin-bottom: 16px;
 }
 
 .sidebar .logout-btn:hover {
@@ -280,6 +281,7 @@ td strong {
     color: #2a2f4a;
 }
 
+
 /* Action Icons (using inline SVGs) */
 .action-link svg {
     width: 24px;
@@ -289,6 +291,11 @@ td strong {
     align-items: center;
     
 }
+.action-link svg:hover {
+    transform: scale(1.1);
+    color: #2a2f4a;
+}
+
 .add-buttons {
     display: flex;
     gap: 6px;
@@ -319,8 +326,137 @@ td strong {
 table + br {
     margin-bottom: 20px;
 }
+.today-cell {
+    background-color: #f4c8e1;
+    border: 2px solid #160311;
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-/* Responsive tweaks */
+body.dark-mode .sidebar {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+body.dark-mode .main-content {
+    background-color: #181818;
+    color: #ccc;
+}
+
+body.dark-mode table {
+    border-collapse: collapse;
+    border-color: #444;
+}
+
+body.dark-mode th, 
+body.dark-mode td {
+    border: 1px solid #444;
+    background-color: #1c1c1c;
+    color: #ddd;
+    padding: 8px 12px;
+}
+
+body.dark-mode th {
+    font-weight: 600;
+    background-color: #262626;
+}
+
+body.dark-mode .event,
+body.dark-mode .task {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #eee;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+body.dark-mode .action-link svg {
+    fill: #bbb;
+}
+
+body.dark-mode .action-link:hover svg,
+body.dark-mode .action-link:focus svg {
+    fill: #7ac74f; /* subtle green highlight */
+}
+
+body.dark-mode .dark-toggle-btn,
+.dark-toggle-btn {
+    background-color: #2f2f2f;
+    color: #eee;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dark-toggle-btn:hover,
+.dark-toggle-btn:focus {
+    background-color: #444;
+    transform: scale(1.05);
+    outline: none;
+}
+
+/* Smooth transitions */
+body, .main-content, table, th, td {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Download Button - Light Mode */
+.download-btn {
+    background-color: #e1e4e1;
+    color: #030300;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #b7bfb7;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.download-btn:hover,
+.download-btn:focus {
+    background-color: #c7d9b5;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    outline: none;
+}
+
+/* Download Button - Dark Mode */
+body.dark-mode .download-btn {
+    background-color: #2e4a17;
+    color: #d6e9b9;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #446522;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+body.dark-mode .download-btn:hover,
+body.dark-mode .download-btn:focus {
+    background-color: #4a7f2a;
+    box-shadow: 0 2px 6px rgba(74, 127, 42, 0.5);
+    outline: none;
+}
+
+/* Responsive tweaks tablets*/
 @media (max-width: 900px) {
     .sidebar {
         position: fixed;
@@ -340,5 +476,23 @@ table + br {
     }
     .main-content.expanded {
         margin-left: 200px;
+    }
+}
+@media (max-width: 600px) {
+    /* Sidebar overlays fully, no content shift */
+    .sidebar {
+        transform: translateX(-220px);
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+
+    .sidebar.closed {
+        transform: translateX(0);
+    }
+
+    /* Main content never shifts, always full width */
+    .main-content,
+    .main-content.expanded {
+        margin-left: 0;
+        padding: 1rem 0.5rem; /* slightly less horizontal padding */
     }
 }

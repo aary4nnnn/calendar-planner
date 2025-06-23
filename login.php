@@ -45,13 +45,29 @@ if ($nextMonth > 12) {
 </head>
 
 <body>
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <p>Hello, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
-        <a href="logout.php" class="logout-btn">Logout</a>
+   <div class="sidebar">
+    <h2>Menu</h2>
+    <p>Hello, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
+
+    <!-- Email label with icon -->
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <img src="screenshots/email.jpg" alt="Email Icon" style="width: 23px; height: 23px;">
+        <span>Email:</span>
     </div>
+    
+
+    <!-- Email value on the next line -->
+    <p><em><?= htmlspecialchars($_SESSION['email']) ?></em></p>
+    <button id="darkModeToggle" class="dark-toggle-btn">🌙 Dark Mode</button>
+        <a href="export_tasks.php" class="download-btn">📥 Download Tasks as Excel</a>
+
+    <a href="logout.php" class="logout-btn">Logout</a>
+</div>
+
 
     <div class="main-content">
+        
+
         <div class="main-content" id="mainContent">
             <button id="toggleBtn">☰</button> <!-- Add this button -->
             <div class="navigation-links">
@@ -109,10 +125,12 @@ if ($nextMonth > 12) {
 
                     for ($day = 1; $day <= $daysInMonth; $day++) {
                         $date = "$year-" . str_pad($month, 2, '0', STR_PAD_LEFT) . "-" . str_pad($day, 2, '0', STR_PAD_LEFT);
-                        echo "<td><strong>$day</strong>";
+                       
                         $today = date('Y-m-d');
 
 
+$cellClass = ($date == $today) ? 'today-cell' : '';
+echo "<td class='$cellClass'><strong>$day</strong>";
 
 
                         // --- EVENTS SECTION ---
@@ -153,7 +171,7 @@ if ($nextMonth > 12) {
                                     }
 
                                     if ($status === 'done') {
-                                        echo "<span class='status-done'>✅ Completed</span>";
+                                        echo "<span class='status-done'>✅ Event Completed</span>";
                                     } else {
                                         $statusText2 = ($eventDate > $today) ? "⏳ Upcoming"
                                             : (($eventDate == $today) ? "⚠️ Due" : "❌ Event Passed!");
@@ -175,7 +193,7 @@ if ($nextMonth > 12) {
                             foreach ($tasks as $task) {
                                 if ($task['task_date'] === $date) {
                                     $status = $task['status'];
-                                    $statusText = ($status === 'done') ? "✅ Done"
+                                    $statusText = ($status === 'done') ? "✅ Task Completed"
                                         : (($task['task_date'] > $today) ? "⏳ Upcoming"
                                             : (($task['task_date'] == $today) ? "⚠️ Due" : "Deadline exceeded!"));
 
@@ -245,11 +263,26 @@ if ($nextMonth > 12) {
                 if (sidebar.classList.contains('closed')) {
                     toggleBtn.textContent = '☰ Menu';
                 } else {
-                    toggleBtn.textContent = '☰';
+                    toggleBtn.textContent = '☰ Close Menu';
                 }
 
             });
-        </script>
+        
+    const darkToggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Load dark mode state from localStorage
+    //local storage is browser's storage
+    if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+    }
+
+    darkToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+    });
+</script>
+
     </div>
 
 </body>

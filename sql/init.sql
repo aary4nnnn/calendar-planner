@@ -24,3 +24,4 @@ CREATE TABLE tasks (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+/*ALTER TABLE tasks ADD COLUMN description TEXT;*/

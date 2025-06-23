@@ -2,7 +2,7 @@
 require 'auth.php';
 require 'db.php';
 
-$task = ['title' => '', 'task_date' => $_GET['date'] ?? date('Y-m-d'), 'status' => 'pending'];
+$task = ['title' => '', 'description' => '', 'task_date' => $_GET['date'] ?? date('Y-m-d'), 'status' => 'pending'];
 
 if (isset($_GET['id'])) {
     $stmt = $pdo->prepare("SELECT * FROM tasks WHERE id = ? AND user_id = ?");
@@ -95,6 +95,9 @@ if (isset($_GET['id'])) {
 
         <label>Title</label>
         <input name="title" value="<?= htmlspecialchars($task['title']) ?>" required>
+
+        <label>Description</label>
+        <textarea name="description"><?= htmlspecialchars($task['description'] ?? '') ?></textarea>
 
         <button type="submit">Save Task</button>
     </form>
